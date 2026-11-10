@@ -64,6 +64,11 @@
           }
         }
       }
+    },
+    {
+      "includes": ["samples/**"],
+      "linter": { "enabled": false },
+      "formatter": { "enabled": false }
     }
   ]
 }
