@@ -1,0 +1,59 @@
+# syntax=docker/dockerfile:1
+# Dockerfile: instructions, arguments, environment variables, multi-stage.
+# Exercises: instructions, arguments, environment variables, JSON array form,
+# comments, line continuations, string quoting.
+
+ARG BASE_IMAGE=ghcr.io/gnome/adwaita:1.10
+ARG NODE_VERSION=24
+ARG BUN_VERSION=latest
+
+FROM ${BASE_IMAGE} AS base
+
+LABEL org.opencontainers.image.title="VSC Adwaita Next" \
+      org.opencontainers.image.licenses="GPL-3.0-only" \
+      org.opencontainers.image.source="https://github.com/vsc-adwaita-next/vsc-adwaita-next"
+
+ENV LANG=C.UTF-8 \
+    DEBIAN_FRONTEND=noninteractive \
+    CODIUM_DATA_DIR=/config
+
+WORKDIR /workspace
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        curl \
+        unzip \
+    && rm -rf /var/lib/apt/lists/*
+
+FROM base AS builder
+
+ARG NODE_VERSION
+ARG BUN_VERSION
+
+COPY package.json bun.lock ./
+RUN curl -fsSL https://bun.sh/install | BUN_VERSION=${BUN_VERSION} bash
+
+COPY . .
+RUN bun install --frozen-lockfile \
+    && bun run build \
+    && bun run validate \
+    && bun run package
+
+FROM base AS runtime
+
+COPY --from=builder /workspace/dist/vsc-adwaita-next-1.0.0.vsix /tmp/
+
+USER 1000:1000
+
+VOLUME ["/workspace"]
+
+EXPOSE 8080/tcp 8080/udp
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+    CMD curl -fsS http://localhost:8080/health || exit 1
+
+ENTRYPOINT ["codium", "--serve"]
+CMD ["--install-extension", "/tmp/vsc-adwaita-next-1.0.0.vsix"]

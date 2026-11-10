@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/D1ZZY4/vsc-adwaita-next/security/advisories/new
+    about: Please report security problems privately rather than in a public issue.
+  - name: Upstream project
+    url: https://github.com/piousdeer/vscode-adwaita/issues
+    about: Issues with the original, unforked project belong on its tracker.
+  - name: VS Code theming documentation
+    url: https://code.visualstudio.com/api/extension-capabilities/theming
+    about: Reference for what a colour theme can and cannot style.
+  - name: libadwaita documentation
+    url: https://gnome.pages.gitlab.gnome.org/libadwaita/
+    about: The design system this theme's tokens come from.

@@ -1,0 +1,94 @@
+// SCSS: nesting, mixins, functions, control directives, modules.
+// Exercises: nesting, variables, mixins, includes, functions, @use and
+// @forward, control directives, interpolation, parent selectors.
+
+@use "sass:color";
+@use "sass:math";
+@use "./tokens" as tokens;
+
+$accent-bg: #3584e4 !default;
+$accent-fg: #ffffff;
+$view-bg: #1d1d20;
+$border: rgb(255 255 255 / 7%);
+$radius: 12px;
+$spacing: 0.5rem;
+
+@mixin surface($bg, $border-color: $border, $radius: $radius) {
+  background: $bg;
+  border: 1px solid $border-color;
+  border-radius: $radius;
+}
+
+@function elevate($level) {
+  @if $level == 0 {
+    @return $view-bg;
+  } @else if $level < 3 {
+    @return color.adjust($view-bg, $lightness: 6% * $level);
+  } @else {
+    @return #36363a;
+  }
+}
+
+%reset {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.surface {
+  @extend %reset;
+  @include surface(elevate(0));
+
+  &__label {
+    font-weight: 700;
+    color: rgba(255 255 255 / 80%);
+  }
+
+  &__value {
+    margin-block-start: $spacing;
+  }
+
+  &--elevated {
+    @include surface(elevate(3), $radius: $radius * 2);
+  }
+
+  &:hover,
+  &:focus-visible {
+    border-color: $accent-bg;
+  }
+
+  .parent & {
+    isolation: isolate;
+  }
+}
+
+@each $name, $level in (view: 0, window: 1, sidebar: 2, dialog: 3) {
+  .surface--#{$name} {
+    background: elevate($level);
+  }
+}
+
+@for $index from 1 through 4 {
+  .elevation-#{$index} {
+    z-index: $index * 10;
+  }
+}
+
+@while math.div($spacing, 2) > 0 {
+  $spacing: math.div($spacing, 2);
+}
+
+.suggested-action {
+  background: $accent-bg;
+  color: $accent-fg;
+
+  &:hover {
+    background: color.adjust($accent-bg, $lightness: 8%);
+  }
+
+  &[aria-disabled="true"] {
+    opacity: 0.45;
+  }
+}
+
+@forward "./tokens" show $accent-bg;

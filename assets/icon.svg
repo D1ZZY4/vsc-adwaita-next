@@ -1,0 +1,42 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    VSC Adwaita Next extension icon.
+
+    The mark is an original composition: a rounded "window" plate carrying the
+    three Adwaita accent stripes that stand for the light/dark pair plus the
+    syntax accent, with the leading stripe picked up in GNOME blue. Geometry is
+    kept on a 16 unit grid so it stays crisp when rasterised down to 32 px.
+
+    Colours are the libadwaita palette: blue_3 #3584e4 (accent), green_3
+    #33d17a, orange_3 #ff7800, and the neutral surface ramp light_1 #ffffff,
+    dark_3 #3d3846.
+  -->
+  <defs>
+    <linearGradient id="plate" x1="14" y1="10" x2="114" y2="118" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f6f5f4"/>
+    </linearGradient>
+    <linearGradient id="stripeBlue" x1="34" y1="34" x2="94" y2="94" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#62a0ea"/>
+      <stop offset="1" stop-color="#3584e4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Window plate -->
+  <rect x="14" y="10" width="100" height="108" rx="18" fill="url(#plate)"/>
+  <rect x="14" y="10" width="100" height="108" rx="18" stroke="#3d3846" stroke-opacity="0.13" stroke-width="2.5"/>
+
+  <!-- Title bar strip with the Adwaita window controls -->
+  <path d="M14 28a18 18 0 0 1 18-18h64a18 18 0 0 1 18 18v6H14z" fill="#3d3846" fill-opacity="0.06"/>
+  <circle cx="30" cy="22" r="3.4" fill="#3d3846" fill-opacity="0.22"/>
+  <circle cx="42" cy="22" r="3.4" fill="#3d3846" fill-opacity="0.22"/>
+  <circle cx="54" cy="22" r="3.4" fill="#3d3846" fill-opacity="0.22"/>
+
+  <!-- Accent stripes: syntax, type and string roles -->
+  <rect x="34" y="48" width="60" height="13" rx="6.5" fill="url(#stripeBlue)"/>
+  <rect x="34" y="70" width="60" height="13" rx="6.5" fill="#33d17a"/>
+  <rect x="34" y="92" width="60" height="13" rx="6.5" fill="#ff7800"/>
+
+  <!-- Sidebar rail, echoing the editor layout the theme is built around -->
+  <rect x="22" y="44" width="6" height="64" rx="3" fill="#3d3846" fill-opacity="0.14"/>
+</svg>

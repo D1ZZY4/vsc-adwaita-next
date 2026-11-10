@@ -1,0 +1,110 @@
+{
+  "name": "vsc-adwaita-next",
+  "displayName": "VSC Adwaita Next",
+  "type": "module",
+  "description": "A GNOME Adwaita inspired theme for VS Code, VSCodium and other Code - OSS based editors.",
+  "version": "1.0.0",
+  "publisher": "D1ZZY4",
+  "license": "GPL-3.0-only",
+  "icon": "assets/icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Themes",
+    "Visualization"
+  ],
+  "keywords": [
+    "adwaita",
+    "libadwaita",
+    "gnome",
+    "gtk",
+    "gtk4",
+    "theme",
+    "dark",
+    "light",
+    "color-theme",
+    "product-icon-theme"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/D1ZZY4/vsc-adwaita-next.git"
+  },
+  "homepage": "https://github.com/D1ZZY4/vsc-adwaita-next",
+  "bugs": {
+    "url": "https://github.com/D1ZZY4/vsc-adwaita-next/issues"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "Adwaita Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dark.json"
+      },
+      {
+        "label": "Adwaita Dark & colorful status bar",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dark-colorful-status-bar.json"
+      },
+      {
+        "label": "Adwaita Dark & default syntax highlighting",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dark-default-syntax-highlighting.json"
+      },
+      {
+        "label": "Adwaita Dark & default syntax highlighting & colorful status bar",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dark-default-syntax-highlighting-colorful-status-bar.json"
+      },
+      {
+        "label": "Adwaita Light",
+        "uiTheme": "vs",
+        "path": "./themes/light.json"
+      },
+      {
+        "label": "Adwaita Light & colorful status bar",
+        "uiTheme": "vs",
+        "path": "./themes/light-colorful-status-bar.json"
+      },
+      {
+        "label": "Adwaita Light & default syntax highlighting",
+        "uiTheme": "vs",
+        "path": "./themes/light-default-syntax-highlighting.json"
+      },
+      {
+        "label": "Adwaita Light & default syntax highlighting & colorful status bar",
+        "uiTheme": "vs",
+        "path": "./themes/light-default-syntax-highlighting-colorful-status-bar.json"
+      }
+    ],
+    "productIconThemes": [
+      {
+        "id": "adwaita",
+        "label": "Adwaita",
+        "path": "./icons/adwaita.json"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "bun scripts/build.ts",
+    "build:themes": "bun scripts/build.ts themes",
+    "build:icons": "bun scripts/build.ts icons",
+    "validate": "bun scripts/validate.ts",
+    "test": "bun test tests/",
+    "typecheck": "tsc --noEmit",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "lint": "biome lint .",
+    "update:gtksourceview": "bun scripts/update-gtksourceview.ts",
+    "package": "bun scripts/package.ts",
+    "verify": "bun run typecheck && bun run lint && bun run format:check && bun run test && bun run validate"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.6.6",
+    "@types/bun": "1.3.4",
+    "@types/node": "24.10.1",
+    "@vscode/vsce": "4.1.0",
+    "typescript": "5.9.3"
+  },
+  "private": true
+}

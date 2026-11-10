@@ -1,0 +1,143 @@
+# GraphQL: schema definitions, queries, mutations, fragments, directives.
+
+"""
+The root schema description.
+"""
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+directive @auth(requires: Role = USER) on FIELD_DEFINITION | OBJECT
+directive @deprecated(reason: String = "No longer supported") on FIELD | ENUM_VALUE
+
+scalar DateTime
+scalar JSON
+
+enum Role {
+  USER
+  MAINTAINER
+  ADMIN
+}
+
+enum Level {
+  VIEW
+  WINDOW
+  SIDEBAR
+  DIALOG
+}
+
+interface Node {
+  id: ID!
+}
+
+interface Surface implements Node {
+  id: ID!
+  name: String!
+  elevation: Int!
+  recessed: Boolean!
+}
+
+type Theme implements Node {
+  id: ID!
+  name: String!
+  variant: Level!
+  surfaces(first: Int = 10, after: String): SurfaceConnection!
+  accent: String
+  tones: [String!]!
+}
+
+type SurfaceConnection {
+  edges: [SurfaceEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type SurfaceEdge {
+  cursor: String!
+  node: Surface!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+input SurfaceFilter {
+  name: String
+  minElevation: Int = 0
+  maxElevation: Int = 7
+  recessed: Boolean
+}
+
+type Query {
+  node(id: ID!): Node
+  surfaces(filter: SurfaceFilter, first: Int, after: String): SurfaceConnection!
+  theme(name: String!): Theme
+}
+
+type Mutation {
+  createSurface(input: CreateSurfaceInput!): CreateSurfacePayload!
+  deleteSurface(id: ID!): DeleteSurfacePayload!
+}
+
+input CreateSurfaceInput {
+  name: String!
+  elevation: Int! = 0
+  tones: [String!] = []
+}
+
+type CreateSurfacePayload {
+  surface: Surface
+  errors: [UserError!]!
+}
+
+type UserError {
+  field: [String!]!
+  message: String!
+}
+
+type Subscription {
+  surfaceUpdated(id: ID!): Surface!
+}
+
+query GetThemes($first: Int = 10, $after: String) {
+  surfaces(first: $first, after: $after) {
+    totalCount
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      cursor
+      node {
+        id
+        name
+        elevation
+        recessed
+        tones
+      }
+    }
+  }
+}
+
+mutation CreateView($input: CreateSurfaceInput!) {
+  createSurface(input: $input) {
+    surface {
+      ...SurfaceFields
+    }
+    errors {
+      field
+      message
+    }
+  }
+}
+
+fragment SurfaceFields on Surface {
+  id
+  name
+  elevation @deprecated(reason: "Use level instead")
+}

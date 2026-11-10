@@ -1,0 +1,57 @@
+// JSONC: JSON with comments and trailing commas, as used in settings files.
+// Exercises: line comments, block comments, trailing commas, nested objects,
+// string values, booleans, null, and the settings keys VS Code reads.
+
+{
+  // Colour theme selection.
+  "workbench.colorTheme": "Adwaita Dark",
+  "workbench.preferredDarkColorTheme": "Adwaita Dark",
+  "workbench.preferredLightColorTheme": "Adwaita Light",
+  "workbench.productIconTheme": "adwaita",
+  "window.autoDetectColorScheme": true,
+
+  /* Window chrome that complements the theme. */
+  "window.titleBarStyle": "custom",
+  "window.commandCenter": true,
+  "window.menuBarVisibility": "compact",
+
+  // Editor
+  "editor.renderLineHighlight": "none",
+  "editor.fontFamily": "JetBrains Mono, monospace",
+  "editor.fontSize": 13,
+  "editor.lineHeight": 1.6,
+  "editor.tabSize": 2,
+  "editor.rulers": [80, 120],
+  "editor.wordWrap": "off",
+  "editor.minimap.enabled": true,
+  "editor.minimap.scale": 1,
+  "editor.bracketPairColorization.enabled": false,
+
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.eol": "\n",
+
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.defaultProfile.linux": "bash",
+
+  "git.autofetch": true,
+  "git.confirmSync": false,
+
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "themes/**": true // generated
+  },
+
+  "json.schemas": [
+    {
+      "fileMatch": ["themes/*.json"],
+      "url": "vscode://schemas/color-theme"
+    }
+  ],
+
+  "empty": {},
+  "nothing": null,
+  "zero": 0
+}

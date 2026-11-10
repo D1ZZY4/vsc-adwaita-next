@@ -1,0 +1,37 @@
+# Build and tooling sources are not part of the published extension.
+src/**
+scripts/**
+tests/**
+.github/**
+.vscode/**
+biome.json
+tsconfig.json
+.editorconfig
+.gitattributes
+.nvmrc
+.gitignore
+bun.lock
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Caches that a developer's tooling may leave behind.
+.ruff_cache/**
+__pycache__/**
+*.tsbuildinfo
+
+# Documentation beyond what the marketplace pages render.
+*.md
+!README.md
+!CHANGELOG.md
+!LICENSE
+
+# Icon artwork: the package needs only the PNG.
+assets/**
+!assets/icon.png
+
+# Icon glyph sources; the package needs only the compiled font.
+icons/svg/**
+
+# Syntax highlighting samples used for visual QA, not shipped.
+samples/**

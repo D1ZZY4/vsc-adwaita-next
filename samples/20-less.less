@@ -1,0 +1,81 @@
+// Less: nesting, mixins, guards, operations, escaping.
+// Exercises: variables, mixins with guards, nesting, operations,
+// interpolation, escaping, importing, functions.
+
+@accent-bg: #3584e4;
+@accent-fg: #ffffff;
+@view-bg: #1d1d20;
+@border: rgb(255 255 255 / 7%);
+@radius: 12px;
+@spacing: 0.5rem;
+
+.surface(@bg, @border-color: @border, @radius: @radius) {
+  background: @bg;
+  border: 1px solid @border-color;
+  border-radius: @radius;
+}
+
+.elevate(@level) when (@level = 0) {
+  background: @view-bg;
+}
+
+.elevate(@level) when (@level > 0) and (@level < 3) {
+  background: lighten(@view-bg, @level * 6%);
+}
+
+.elevate(@level) when (@level >= 3) {
+  background: #36363a;
+}
+
+.reset() {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@import (reference) "./tokens.less";
+
+.surface {
+  .reset();
+  .surface(@view-bg);
+
+  &__label {
+    font-weight: 700;
+  }
+
+  &__value {
+    margin-block-start: @spacing;
+  }
+
+  &--elevated {
+    .surface(#36363a, @radius: @radius * 2);
+  }
+
+  &:hover {
+    border-color: @accent-bg;
+  }
+}
+
+@list: view, window, sidebar, dialog;
+
+each(@list, {
+  .surface--@{value} {
+    .elevate(@index);
+  }
+});
+
+.suggested-action {
+  background: @accent-bg;
+  color: @accent-fg;
+  padding: (@spacing * 2) (@spacing * 3);
+
+  &:hover {
+    background: fadein(@accent-bg, 8%);
+  }
+}
+
+.escaped:~"raw { content: '\\2014' }";
+.calculated {
+  width: (@radius * 10);
+  height: percentage(0.75);
+}

@@ -1,0 +1,92 @@
+name: Bug report
+description: Report a defect in a theme, the icon theme, or the build
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Please do not include secrets or API keys.
+
+  - type: dropdown
+    id: variant
+    attributes:
+      label: Theme variant
+      options:
+        - Adwaita Dark
+        - Adwaita Dark & colorful status bar
+        - Adwaita Dark & default syntax highlighting
+        - Adwaita Dark & default syntax highlighting & colorful status bar
+        - Adwaita Light
+        - Adwaita Light & colorful status bar
+        - Adwaita Light & default syntax highlighting
+        - Adwaita Light & default syntax highlighting & colorful status bar
+        - Product icon theme
+    validations:
+      required: true
+
+  - type: input
+    id: editor
+    attributes:
+      label: Editor and version
+      description: VS Code, VSCodium or another Code - OSS build, plus the version.
+      placeholder: VSCodium 1.143.0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of problem is it?
+      options:
+        - Colour is wrong or unreadable
+        - Syntax highlighting is wrong
+        - Icon is wrong or missing
+        - Theme does not load
+        - Build or validation failure
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the actual behaviour and what you expected instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open a file with language X
+        2. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope, for syntax problems
+      description: |
+        Run "Developer: Inspect Editor Tokens and Scopes" and paste the scope of
+        the affected text. If you know the GtkSourceView style you expected,
+        include it too.
+      render: text
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: |
+        Drag images here. If the problem is visual, a light and a dark screenshot
+        is much more useful than a description.
+
+  - type: input
+    id: version
+    attributes:
+      label: Extension version
+      placeholder: 1.0.0
+    validations:
+      required: true

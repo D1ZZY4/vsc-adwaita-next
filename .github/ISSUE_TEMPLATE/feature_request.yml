@@ -1,0 +1,54 @@
+name: Feature request
+description: Suggest a new variant, a new surface to theme, or a design change
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Design requests should say which libadwaita token the change is based on.
+        See CONTRIBUTING.md for the token workflow.
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of request is it?
+      options:
+        - New theme variant
+        - Theme a VS Code surface that is currently unstyled
+        - Syntax highlighting change
+        - Product icon change
+        - Build or tooling improvement
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the situation, not just the solution.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: |
+        If this is a colour change, name the libadwaita token or palette entry
+        the new value comes from. If it is a scope change, name the TextMate
+        scope.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or references
+      description: Mockups, upstream GNOME screenshots, or comparisons.

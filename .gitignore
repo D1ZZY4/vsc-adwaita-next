@@ -1,0 +1,27 @@
+# Build output
+dist/
+*.vsix
+
+# Dependencies
+node_modules/
+
+# Caches
+.eslintcache
+.biome-cache/
+.ruff_cache/
+__pycache__/
+*.tsbuildinfo
+
+# Editors
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local environment overrides
+.env
+.env.local

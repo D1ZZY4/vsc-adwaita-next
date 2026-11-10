@@ -1,0 +1,115 @@
+/*
+ * CSS: selectors, properties, custom properties, at-rules.
+ * Exercises: type, id, class and pseudo selectors, combinators, custom
+ * properties, at-rules, vendor-specific properties, colour functions.
+ */
+
+:root {
+  --accent-bg: #3584e4;
+  --accent-fg: #ffffff;
+  --view-bg: #1d1d20;
+  --window-bg: #222226;
+  --sidebar-bg: #2e2e32;
+  --border: rgb(255 255 255 / 7%);
+  --radius: 12px;
+  --duration: 200ms;
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --view-bg: #ffffff;
+    --window-bg: #fafafb;
+    --sidebar-bg: #ebebed;
+    --border: rgb(0 0 6 / 7%);
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --border: rgb(0 0 6 / 20%);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light dark;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  font-family: "Cantarell", system-ui, sans-serif;
+  background: var(--window-bg);
+  color: rgba(0 0 6 / 80%);
+}
+
+.surface,
+.surface--elevated {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.surface > .surface__label + .surface__value {
+  margin-block-start: 0.5rem;
+}
+
+#view:focus-visible,
+#view:hover {
+  outline: 2px solid var(--accent-bg);
+  outline-offset: 2px;
+}
+
+a[href^="https://"]::after {
+  content: " ↗";
+}
+
+input:not([type="submit"]):disabled,
+textarea[readonly] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+tr:nth-child(2n) td {
+  background: color-mix(in srgb, var(--accent-bg) 8%, transparent);
+}
+
+@supports (backdrop-filter: blur(10px)) {
+  .popover {
+    backdrop-filter: blur(10px);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@font-face {
+  font-family: "Adwaita Sans";
+  src: url("./fonts/adwaita-sans.woff2") format("woff2");
+  font-weight: 400 700;
+}
+
+@import url("./reset.css") layer(reset);
+
+.suggested-action {
+  background: var(--accent-bg);
+  color: var(--accent-fg);
+  transition: background var(--duration) var(--ease);
+}
+
+.suggested-action:hover {
+  background: color-mix(in oklab, var(--accent-bg) 88%, white);
+}

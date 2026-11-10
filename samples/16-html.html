@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--
+  HTML: document structure, embedded expressions, custom elements.
+  Exercises: doctype, comments, element names, attribute names and values,
+  boolean attributes, data attributes, script and style blocks.
+-->
+<html lang="en" class="adwaita">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Adwaita Surfaces</title>
+    <link rel="stylesheet" href="./18-css.css" />
+    <style>
+      :root {
+        --accent: #3584e4;
+      }
+    </style>
+  </head>
+
+  <body data-variant="dark">
+    <header class="headerbar" role="banner">
+      <h1 id="title">Adwaita Surfaces</h1>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#view" class="is-active">View</a></li>
+          <li><a href="#sidebar">Sidebar</a></li>
+          <li><a href="#dialog" target="_blank" rel="noopener">Dialog</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="view" aria-labelledby="view-heading">
+        <h2 id="view-heading">View</h2>
+        <p>
+          The content view is <strong>recessed</strong> in dark style, which is
+          how libadwaita signals a content area.
+        </p>
+
+        <figure>
+          <img src="./icon.png" alt="Adwaita icon" width="128" height="128" loading="lazy" />
+          <figcaption>An <code>&lt;img&gt;</code> element</figcaption>
+        </figure>
+
+        <table>
+          <caption>Surface levels</caption>
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Level</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>view</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>sidebar</td>
+              <td>2</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <form action="/submit" method="post">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="view" required />
+          <select id="level" name="level">
+            <option value="0" selected>View</option>
+            <option value="2">Sidebar</option>
+          </select>
+          <textarea id="notes" name="notes" rows="3"></textarea>
+          <button type="submit" class="suggested-action">Save</button>
+        </form>
+      </section>
+
+      <section id="sidebar">
+        <h2>Sidebar</h2>
+        <blockquote cite="https://gnome.pages.gitlab.gnome.org/libadwaita/">
+          Sidebars sit above the window surface.
+        </blockquote>
+        <pre><code>const accent = "#3584e4";</code></pre>
+        <details open>
+          <summary>Details</summary>
+          <p>Toggle content</p>
+        </details>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 &middot; <abbr title="Visual Studio Code">VS Code</abbr></p>
+    </footer>
+
+    <script type="module">
+      const accent = "#3584e4";
+      document.documentElement.dataset.accent = accent;
+      console.log(`accent is ${accent}`);
+    </script>
+  </body>
+</html>

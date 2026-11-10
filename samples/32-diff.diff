@@ -1,0 +1,69 @@
+diff --git a/themes/adwaita-dark.json b/themes/dark.json
+similarity index 92%
+rename from themes/adwaita-dark.json
+rename to themes/dark.json
+index 3a1b2c4..5d6e7f8 100644
+--- a/themes/adwaita-dark.json
++++ b/themes/dark.json
+@@ -1,7 +1,7 @@
+ {
+   "$schema": "vscode://schemas/color-theme",
+-  "name": "Adwaita Dark",
+-  "type": "light",
++  "name": "Adwaita Dark",
++  "type": "dark",
+   "colors": {
+-    "editor.background": "#1d1d1d",
++    "editor.background": "#1d1d20",
+     "editor.foreground": "#c0bfbc",
+-    "sideBar.background": "#242424",
++    "sideBar.background": "#2e2e32",
+     "statusBar.background": "#242424",
++    "gitDecoration.addedResourceForeground": "#57e389",
++    "gitDecoration.modifiedResourceForeground": "#f6d32d",
++    "gitDecoration.deletedResourceForeground": "#ed333b",
+     "focusBorder": "#5f7999"
+   },
+@@ -30,6 +33,9 @@
+       "settings": {
+-        "foreground": "#504E55",
++        "foreground": "#c0bfbc",
++        "fontStyle": ""
+       }
+     },
++    {
++      "scope": ["markup.inserted.diff"],
++      "settings": { "foreground": "#33b2a4" }
++    },
+     {
+       "scope": ["markup.heading.markdown"],
+diff --git a/src/adwaita_ui_colors.py b/src/workbench.ts
+deleted file mode 100644
+index 9a8b7c6..0d1e2f3 100644
+--- a/src/adwaita_ui_colors.py
++++ /dev/null
+@@ -1,10 +1,3 @@
+-from adwaita_colors import get_adwaita_colors
+-
+-
+-named_colors, _syntax_colors = get_adwaita_colors('light')
+-
+-
+-def get_adwaita_ui_colors(theme_type, colorful_status_bar=False):
+-    def _(name): return lambda value: named_colors[f'{name}_{value}']
+-    dark = theme_type == 'dark'
+diff --git a/package.json b/package.json
+index 1a2b3c4..5e6f7a8 100644
+--- a/package.json
++++ b/package.json
+@@ -1,6 +1,6 @@
+ {
+-  "name": "adwaita-theme",
+-  "displayName": "Adwaita",
+-  "publisher": "piousdeer",
+-  "version": "1.1.0",
++  "name": "vsc-adwaita-next",
++  "displayName": "VSC Adwaita Next",
++  "publisher": "vsc-adwaita-next",
++  "version": "1.0.0",
+   "license": "GPL-3.0-only",

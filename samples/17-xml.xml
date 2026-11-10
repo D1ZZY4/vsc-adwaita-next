@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  XML: processing instructions, namespaces, attributes, CDATA.
+  Exercises: XML declaration, processing instructions, element names,
+  attribute names and values, namespaces, CDATA sections, entities.
+-->
+<style-scheme id="Adwaita" _name="Adwaita" version="1.0"
+    xmlns:gtk="http://www.gnome.org/gtk"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <author>Christian Hergert</author>
+  <_description>A style scheme for Adwaita</_description>
+
+  <metadata>
+    <property name="variant">light</property>
+    <property name="dark-variant">Adwaita-dark</property>
+  </metadata>
+
+  <!-- Named colours -->
+  <color name="blue_1" value="#99C1F1"/>
+  <color name="blue_3" value="#3584E4"/>
+  <color name="teal_2" value="#5BC8AF"/>
+  <color name="orange_2" value="#FFA348"/>
+
+  <!-- Global styles -->
+  <style name="text" background="light_2" foreground="dark_3"/>
+  <style name="def:keyword" foreground="orange_5" bold="true"/>
+  <style name="def:type" foreground="teal_5" bold="true"/>
+  <style name="def:string" foreground="teal_5"/>
+  <style name="def:comment" foreground="dark_1"/>
+
+  <gtk:settings>
+    <gtk:property name="gtk-theme-name">Adwaita</gtk:property>
+  </gtk:settings>
+
+  <xi:include href="adwaita-dark.xml" xpointer="xpointer(/*)"/>
+
+  <data><![CDATA[
+    const accent = "#3584e4";
+    function greet(name) {
+      return `hello ${name}`;
+    }
+  ]]></data>
+
+  <escaped>&amp; &lt; &gt; &quot; &apos; &#x1F600;</escaped>
+</style-scheme>

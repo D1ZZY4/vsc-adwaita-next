@@ -1,0 +1,74 @@
+# TOML: tables, arrays of tables, inline tables, dates.
+# Exercises: tables, arrays of tables, inline tables, dotted keys, arrays,
+# strings, numbers, booleans, dates and times.
+
+title = "VSC Adwaita Next"
+
+[package]
+name = "vsc-adwaita-next"
+version = "1.0.0"
+license = "GPL-3.0-only"
+edition = "2024"
+
+[package.engines]
+vscode = "^1.85.0"
+
+[[themes]]
+label = "Adwaita Dark"
+uiTheme = "vs-dark"
+path = "./themes/dark.json"
+
+[[themes]]
+label = "Adwaita Light"
+uiTheme = "vs"
+path = "./themes/light.json"
+
+[dependencies]
+typescript = "5.9.3"
+"@biomejs/biome" = "2.6.6"
+"@vscode/vsce" = "4.1.0"
+
+[dependencies.optional]
+nanoemoji = { version = "latest", optional = true }
+
+[dev-dependencies]
+"@types/bun" = "1.3.4"
+
+[surfaces]
+elevations = [0, 1, 2, 3]
+colours = ["#3584e4", "#5bc8af", "#ffa348"]
+inline = { view = 0, window = 1, sidebar = 2, dialog = 3 }
+dotted.view.elevation = 0
+dotted.sidebar.elevation = 2
+
+[strings]
+basic = "Adwaita Dark"
+literal = 'C:\path\to\adwaita'
+multiline = """
+Line one
+Line two with a "quote"
+"""
+multiline-literal = '''
+No \escape sequences here
+'''
+
+[numbers]
+integer = 42
+negative = -7
+float = 1.5
+exponent = 1.5e-9
+hex = 0x1C71D8
+octal = 0o755
+binary = 0b1010_1100
+infinity = inf
+not-a-number = nan
+
+[booleans]
+yes = true
+no = false
+
+[dates]
+released = 2026-11-10
+released-at = 2026-11-10T12:00:00Z
+local-time = 12:00:00
+local-date-time = 2026-11-10T12:00:00

@@ -1,0 +1,16 @@
+# Normalise line endings so the checked out tree matches CI.
+* text=auto eol=lf
+
+# Binary assets must never be touched by line-ending conversion.
+*.png binary
+*.ttf binary
+*.xcf binary
+
+# Generated files: collapse diffs, keep them reviewable as single hunks.
+themes/*.json linguist-generated=true
+src/default-themes/*.json linguist-generated=true
+src/vscode-color-ids.json linguist-generated=true
+icons/adwaita.json linguist-generated=true
+
+# Vendored upstream data keeps its own authorship.
+src/gtksourceview/*.xml linguist-vendored=true

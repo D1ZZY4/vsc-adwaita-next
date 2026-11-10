@@ -1,0 +1,94 @@
+# YAML: keys, anchors, block scalars, flow collections.
+# Exercises: keys as tag names, anchors and aliases, block scalars, flow
+# sequences and mappings, document markers, comments, quoted strings.
+
+---
+name: vsc-adwaita-next
+displayName: VSC Adwaita Next
+version: 1.0.0
+publisher: vsc-adwaita-next
+license: GPL-3.0-only
+
+engines:
+  vscode: "^1.85.0"
+
+categories:
+  - Themes
+  - Visualization
+
+keywords: [adwaita, libadwaita, gnome, gtk, gtk4]
+
+contributes:
+  themes:
+    - label: Adwaita Dark
+      uiTheme: vs-dark
+      path: ./themes/dark.json
+    - label: Adwaita Light
+      uiTheme: vs
+      path: ./themes/light.json
+  productIconThemes:
+    - id: adwaita
+      label: Adwaita
+      path: ./icons/adwaita.json
+
+# Anchors and aliases
+defaults: &defaults
+  elevation: 0
+  tones: []
+  recessed: true
+
+surfaces:
+  view:
+    <<: *defaults
+    name: view
+  sidebar:
+    <<: *defaults
+    name: sidebar
+    elevation: 2
+  dialog:
+    <<: *defaults
+    name: dialog
+    elevation: 3
+
+# Block scalars
+description: |
+  A GNOME Adwaita inspired theme for VS Code,
+  VSCodium and other Code - OSS based editors.
+
+summary: >
+  Folded block scalars join lines
+  into a single paragraph.
+
+chomped: |-
+  No trailing newline
+
+kept: |+
+  Two trailing newlines
+
+
+quoted:
+  single: "Adwaita Dark"
+  double: "Adwaita Light"
+  escaped: "tab\tnewline\nquote\""
+
+numbers:
+  integer: 42
+  negative: -7
+  float: 1.5
+  exponent: 1.5e-9
+  hex: 0x1C71D8
+  octal: 0o755
+
+booleans: [true, false, yes, no]
+nulls: [null, ~]
+
+# A key containing special characters
+"quoted key with spaces": value
+complex key: complex value
+
+multiline_list:
+  - view
+  - window
+  - - sidebar
+    - dialog
+...
