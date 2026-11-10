@@ -110,11 +110,11 @@ the output reproducible:
 ```
 GtkSourceView XML  ─┐
                     ├─> style-scheme.ts ─> syntax.ts ─> tokenColors
-libadwaita tokens ─┤                                   + semanticTokenColors
+libadwaita tokens  ─┤                                   + semanticTokenColors
                     └─> adwaita.ts ─> workbench.ts ─> semantic tokens
                                                   └─> workbench-colors.ts ─> colors
                                                                               │
-                            themes.ts ────────────────────────────────────────┘
+                            themes.ts <───────────────────────────────────────┘
                                         │
                                    themes/*.json
 ```
